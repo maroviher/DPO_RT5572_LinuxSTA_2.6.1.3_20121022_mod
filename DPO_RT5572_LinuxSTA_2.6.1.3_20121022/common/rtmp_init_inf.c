@@ -26,7 +26,7 @@
 
 
 #include	"rt_config.h"
-
+#include	<rt_led.h>
 
 
 #ifdef CONFIG_STA_SUPPORT
@@ -373,7 +373,10 @@ int rt28xx_init(
 
 #ifdef LED_CONTROL_SUPPORT
 	/* Send LED Setting to MCU */
-	RTMPInitLEDMode(pAd);	
+	RTMPInitLEDMode(pAd);
+#else
+	//turn off LED if we dont have LED support
+	AsicSendCommandToMcu(pAd, MCU_SET_LED_MODE, 0xff, 1, 20, FALSE);
 #endif /* LED_CONTROL_SUPPORT */
 
 	NICInitAsicFromEEPROM(pAd); /* rt2860b */
