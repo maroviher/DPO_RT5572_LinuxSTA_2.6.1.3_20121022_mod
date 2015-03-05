@@ -101,6 +101,9 @@ where
 [parameters]        	[val] 
 						{range}
 -----------------   	-------------------------------------------------
+Debug			{0~5}			Change Debug level in kernel Log (dmesg)
+						0: silent
+						5: verbose
 CountryRegion       	{0~7}
 						::Set country region                                   	
 						0: 1 ~ 11 ch
