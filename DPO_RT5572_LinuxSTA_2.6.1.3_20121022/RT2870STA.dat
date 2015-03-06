@@ -1,5 +1,6 @@
 #The word of "Default" must not be removed
 Default
+MacAddress=12:34:45:de:ad:be
 CountryRegion=5
 CountryRegionABand=7
 CountryCode=
