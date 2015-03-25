@@ -11,6 +11,6 @@ Based on original Ralink Driver v2.6.1.3 (10/22/2012)
 
 
 <b><br>internal, raspi cross compile:<br></b>
-git clone https://github.com/maroviher/DPO_RT5572_LinuxSTA_2.6.1.3_20121022_mod
-cd DPO_RT5572_LinuxSTA_2.6.1.3_20121022_mod/DPO_RT5572_LinuxSTA_2.6.1.3_20121022/raspi/
+git clone https://github.com/maroviher/DPO_RT5572_LinuxSTA_2.6.1.3_20121022_mod<br>
+cd DPO_RT5572_LinuxSTA_2.6.1.3_20121022_mod/DPO_RT5572_LinuxSTA_2.6.1.3_20121022/raspi/<br>
 ./cross_compile.sh 3070 arm-linux-gnueabihf- /media/root/967cec13-9afa-45fb-b861-cb3255f6275d/rpi_kernel_23.03.2015/linux
