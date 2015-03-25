@@ -16,7 +16,7 @@ else
   exit 2
 fi
 
-chips="2770 3070 5270"
+chips="2770 3070 5370"
 for chip in $chips
 do
   if [ $1 -eq $chip ]

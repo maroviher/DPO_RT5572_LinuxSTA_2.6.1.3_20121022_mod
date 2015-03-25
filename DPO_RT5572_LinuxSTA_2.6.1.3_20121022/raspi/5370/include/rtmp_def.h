@@ -1518,8 +1518,8 @@
 #define INF_MAIN_DEV_NAME		"wlan"
 #define INF_MBSSID_DEV_NAME		"wlan"
 #else
-#define INF_MAIN_DEV_NAME		"st3070."
-#define INF_MBSSID_DEV_NAME		"st3070."
+#define INF_MAIN_DEV_NAME		"st5370."
+#define INF_MBSSID_DEV_NAME		"st5370."
 #endif /* ANDROID_SUPPORT */
 
 #define INF_WDS_DEV_NAME		"wds"

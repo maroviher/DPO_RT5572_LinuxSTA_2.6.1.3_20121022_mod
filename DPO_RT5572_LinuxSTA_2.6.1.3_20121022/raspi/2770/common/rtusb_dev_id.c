@@ -35,7 +35,7 @@
 
 /* module table */
 USB_DEVICE_ID rtusb_dev_id[] = {
-	{USB_DEVICE(0x148F,0x3070)}, /* Proware */
+	{USB_DEVICE(0x148F,0x2770)}, /* Proware */
 	{ }/* Terminating entry */
 };
 
