@@ -12,7 +12,7 @@ if which $2gcc > /dev/null
 then
   echo "Crosscompiler found"
 else
-  echo "cross compiler whith prefix $2 not found in your \$PATH. Do you need something like \"export PATH=\$PATH:/home/ahmed/raspi_toolchains/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin\"?"
+  echo "cross compiler with prefix $2 not found in your \$PATH. Do you need something like \"PATH=\$PATH:/home/ahmed/raspi_toolchains/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin\"?"
   exit 2
 fi
 
