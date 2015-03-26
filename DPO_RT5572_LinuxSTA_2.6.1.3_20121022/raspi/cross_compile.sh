@@ -32,7 +32,7 @@ then
   exit 1
 fi
 
-FILES="include/os/rt_drv.h include/os/rt_linux.h include/rtmp_def.h common/rtusb_dev_id.c"
+FILES="include/os/rt_drv.h include/os/rt_linux.h include/rtmp_def.h common/rtusb_dev_id.c include/os/rt_linux_cmm.h"
 for f in $FILES; do
   mv ../$f ../${f}_org
   ln -s `pwd`/$target_chip/$f ../$f

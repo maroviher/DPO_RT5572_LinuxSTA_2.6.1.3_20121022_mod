@@ -10,6 +10,7 @@ endif
 
 ifeq ($(CHIPSET),)
 CHIPSET = 5572 3573 3572 2870 5370
+#CHIPSET = 3070
 endif
 
 MODULE = $(word 1, $(CHIPSET))
@@ -28,6 +29,7 @@ RTMP_SRC_DIR = $(RT28xx_DIR)/RT$(MODULE)
 
 #PLATFORM: Target platform
 PLATFORM = PC
+#PLATFORM = RASPI
 #PLATFORM = 5VT
 #PLATFORM = IKANOS_V160
 #PLATFORM = IKANOS_V180
@@ -392,7 +394,11 @@ else
 ifeq ($(PLATFORM),FREESCALE8377)
 	$(MAKE) ARCH=powerpc CROSS_COMPILE=$(CROSS_COMPILE) -C  $(LINUX_SRC) SUBDIRS=$(RT28xx_DIR)/os/linux modules
 else
+ifeq ($(PLATFORM),RASPI)
+	$(MAKE) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) -C  $(LINUX_SRC) SUBDIRS=$(RT28xx_DIR)/os/linux modules
+else
 	$(MAKE) -C $(LINUX_SRC) SUBDIRS=$(RT28xx_DIR)/os/linux modules
+endif
 endif
 endif
 

@@ -848,6 +848,10 @@ WFLAGS += -DRT_BIG_ENDIAN
 EXTRA_CFLAGS := $(WFLAGS) -I$(RT28xx_DIR)/include
 endif
 
+ifeq ($(PLATFORM),RASPI)
+EXTRA_CFLAGS := $(WFLAGS) -I$(RT28xx_DIR)/include
+endif
+
 ifeq ($(PLATFORM),ST)
 #WFLAGS += -DST
 WFLAGS += -DST
