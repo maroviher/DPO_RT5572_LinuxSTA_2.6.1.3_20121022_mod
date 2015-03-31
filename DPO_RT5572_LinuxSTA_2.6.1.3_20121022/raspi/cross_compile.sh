@@ -16,7 +16,7 @@ else
   exit 2
 fi
 
-chips="2770 3070 5370"
+chips="2870 3070 5370"
 for chip in $chips
 do
   if [ $1 -eq $chip ]
@@ -39,7 +39,7 @@ for f in $FILES; do
 done
 
 cd ..
-CROSS_COMPILE=$2 LINUX_SRC=$3 make -j4
+CHIPSET=$target_chip CROSS_COMPILE=$2 LINUX_SRC=$3 make -j4
 
 cd -
 for f in $FILES; do
