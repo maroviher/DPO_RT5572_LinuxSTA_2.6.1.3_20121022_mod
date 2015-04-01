@@ -375,8 +375,10 @@ int rt28xx_init(
 	/* Send LED Setting to MCU */
 	RTMPInitLEDMode(pAd);
 #else
+#ifdef RT3070
 	//turn off LED if we dont have LED support
 	AsicSendCommandToMcu(pAd, MCU_SET_LED_MODE, 0xff, 1, 20, FALSE);
+#endif /* RT3070 */
 #endif /* LED_CONTROL_SUPPORT */
 
 	NICInitAsicFromEEPROM(pAd); /* rt2860b */
