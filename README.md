@@ -21,4 +21,4 @@ Based on original Ralink Driver v2.6.1.3 (10/22/2012)
 * # here are the drivers
 * ls ../os/linux/*.ko
 * # to clean all
-* make clean ; rm -f ap/.* ; rm -f chips/.* ; rm -f common/.* ; rm -f os/linux/.* ; rm -f os/linux/*.mod.c ; rm -f os/linux/*.o ; rm -f os/linux/*.mod.o ; rm -f os/linux/*.ko ; rm -f rate_ctrl/.* ; rm -f sta/.* ; rm -f tools/bin2h
+* make clean ; rm -f ap/.* ; rm -f chips/.* ; rm -f common/.* ; rm -f os/linux/.* ; rm -f os/linux/*.mod.c ; rm -f os/linux/*.o ; rm -f os/linux/.mod.c ; rm -f os/linux/.o ; rm -f os/linux/.mod.o ; rm -f os/linux/.ko ; rm -f rate_ctrl/.* ; rm -f sta/.* ; rm -f tools/bin2h
