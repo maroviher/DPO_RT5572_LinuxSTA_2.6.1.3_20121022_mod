@@ -4984,7 +4984,7 @@ VOID RTMPIoctlShow(
             wrq->u.data.length = strlen(extra) + 1; /* 1: size of '\0' */
             break;
         case SHOW_DRVIER_VERION:
-            snprintf(extra, size, "Driver version-%s, %s %s\n", STA_DRIVER_VERSION, __DATE__, __TIME__ );
+            snprintf(extra, size, "Driver version-%s\n", STA_DRIVER_VERSION);
             wrq->u.data.length = strlen(extra) + 1; /* 1: size of '\0' */
             break;
 #ifdef DOT11_N_SUPPORT
@@ -7425,7 +7425,7 @@ INT RTMP_STA_IoctlHandle(
 		case CMD_RTPRIV_IOCTL_SITESURVEY_GET:
 			RTMPIoctlGetSiteSurvey(pAd, pRequest);
 			break;
-
+#ifdef DBG
 		case CMD_RTPRIV_IOCTL_MAC:
 			RTMPIoctlMAC(pAd, pRequest);
 			break;
@@ -7433,7 +7433,7 @@ INT RTMP_STA_IoctlHandle(
 		case CMD_RTPRIV_IOCTL_E2P:
 			RTMPIoctlE2PROM(pAd, pRequest);
 			break;
-
+#endif
 		case CMD_RTPRIV_IOCTL_RF:
 #ifdef RTMP_RF_RW_SUPPORT
 			RTMPIoctlRF(pAd, pRequest);
