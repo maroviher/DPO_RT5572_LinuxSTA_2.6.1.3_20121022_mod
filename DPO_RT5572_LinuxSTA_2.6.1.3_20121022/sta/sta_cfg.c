@@ -7433,7 +7433,7 @@ INT RTMP_STA_IoctlHandle(
 		case CMD_RTPRIV_IOCTL_E2P:
 			RTMPIoctlE2PROM(pAd, pRequest);
 			break;
-			
+
 		case CMD_RTPRIV_IOCTL_RF:
 #ifdef RTMP_RF_RW_SUPPORT
 			RTMPIoctlRF(pAd, pRequest);
