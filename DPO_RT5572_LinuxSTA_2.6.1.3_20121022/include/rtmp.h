@@ -7793,11 +7793,13 @@ INT	Show_Adhoc_MacTable_Proc(
 	IN	PSTRING			extra,
 	IN	UINT32			size);
 
+#ifdef DBG
 #ifdef RTMP_RF_RW_SUPPORT
 VOID RTMPIoctlRF(
 	IN	PRTMP_ADAPTER	pAdapter, 
 	IN	RTMP_IOCTL_INPUT_STRUCT	*wrq);
 #endif /* RTMP_RF_RW_SUPPORT */
+#endif
 
 
 INT Set_BeaconLostTime_Proc(

@@ -111,6 +111,30 @@ RTMP_BUILD_DRV_OPS_FUNCTION_BODY
 #endif /* OS_ABL_FUNC_SUPPORT */
 #endif /* LINUX */
 
+#ifndef LED_CONTROL_SUPPORT
+void MyRTMPTurnOffLED(IN RTMP_ADAPTER *pAd)
+{
+	LED_CONTROL my_LED_CONTROL;
+	PLED_CONTROL pLedCntl = &my_LED_CONTROL;
+
+	//first time after init elways run this scope
+	//if (pLedCntl->MCULedCntl.word == 0xFF)
+	{
+		pLedCntl->MCULedCntl.word = 0x01;
+		pLedCntl->LedAGCfg = 0x5555;
+		pLedCntl->LedACTCfg= 0x2221;
+
+#ifdef RTMP_MAC_USB
+		pLedCntl->LedPolarity = 0x5627; 
+#endif /* RTMP_MAC_USB */
+	}
+	
+	AsicSendCommandToMcu(pAd, MCU_SET_LED_AG_CFG, 0xff, (UCHAR)pLedCntl->LedAGCfg, (UCHAR)(pLedCntl->LedAGCfg >> 8), FALSE);
+	AsicSendCommandToMcu(pAd, MCU_SET_LED_ACT_CFG, 0xff, (UCHAR)pLedCntl->LedACTCfg, (UCHAR)(pLedCntl->LedACTCfg >> 8), FALSE);
+	AsicSendCommandToMcu(pAd, MCU_SET_LED_POLARITY, 0xff, (UCHAR)pLedCntl->LedPolarity, (UCHAR)(pLedCntl->LedPolarity >> 8), FALSE);
+	AsicSendCommandToMcu(pAd, MCU_SET_LED_GPIO_SIGNAL_CFG, 0xff, 0, pLedCntl->MCULedCntl.field.Polarity, FALSE);
+}
+#endif
 
 int rt28xx_init(
 	IN VOID		*pAdSrc,
@@ -375,10 +399,8 @@ int rt28xx_init(
 	/* Send LED Setting to MCU */
 	RTMPInitLEDMode(pAd);
 #else
-#ifdef RT3070
 	//turn off LED if we dont have LED support
-	AsicSendCommandToMcu(pAd, MCU_SET_LED_MODE, 0xff, 1, 20, FALSE);
-#endif /* RT3070 */
+	MyRTMPTurnOffLED(pAd);
 #endif /* LED_CONTROL_SUPPORT */
 
 	NICInitAsicFromEEPROM(pAd); /* rt2860b */
