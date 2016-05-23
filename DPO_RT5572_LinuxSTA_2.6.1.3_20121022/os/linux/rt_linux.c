@@ -1110,6 +1110,9 @@ void RtmpOSFileSeek(RTMP_OS_FD osfd,
 
 int RtmpOSFileRead(RTMP_OS_FD osfd,
 		     char *pDataPtr, int readLen) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
+	return vfs_read(osfd, pDataPtr, readLen, &osfd->f_pos);
+#else
 	/* The object must have a read method */
 	if (osfd->f_op && osfd->f_op->read) {
 		return osfd->f_op->read(osfd, pDataPtr, readLen, &osfd->f_pos);
@@ -1117,15 +1120,20 @@ int RtmpOSFileRead(RTMP_OS_FD osfd,
 		DBGPRINT(RT_DEBUG_ERROR, ("no file read method\n"));
 		return -1;
 	}
+#endif
 }
 
 int RtmpOSFileWrite(RTMP_OS_FD osfd,
 		    char *pDataPtr, int writeLen) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
+	return vfs_write(osfd, pDataPtr, writeLen, &osfd->f_pos);
+#else
 	return osfd->f_op->write(osfd,
 				 pDataPtr,
 				 (
 	size_t) writeLen,
 				 &osfd->f_pos);
+#endif
 }
 
 static inline void __RtmpOSFSInfoChange(OS_FS_INFO * pOSFSInfo,

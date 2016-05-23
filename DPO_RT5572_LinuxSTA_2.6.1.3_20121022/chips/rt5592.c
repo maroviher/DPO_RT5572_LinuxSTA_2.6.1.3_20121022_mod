@@ -1402,7 +1402,7 @@ static VOID NICInitRT5592BbpRegisters(
 		RTMP_BBP_IO_WRITE8_BY_REG_ID(pAd, BBP_R254, BbpReg);
 		
 		RTMP_BBP_IO_READ8_BY_REG_ID(pAd, BBP_R254, &BbpReg);
-		printk("BBP_R254 = %x\n", BbpReg);
+		DBGPRINT(RT_DEBUG_TRACE, ("BBP_R254 = %x\n", BbpReg));
 	}
 
 	DBGPRINT(RT_DEBUG_TRACE, ("<-- %s\n", __FUNCTION__));
@@ -1884,7 +1884,7 @@ static VOID RT5592_ChipSwitchChannelOffload(
 		}
 
 		if (MTxCycle >=1999)
-			printk("MTxCycle>=1999\n");
+			DBGPRINT(RT_DEBUG_TRACE, ("MTxCycle>=1999\n"));
 	}
 #endif /*CONFIG_MULTI_CHANNEL*/
 	/* Trggier MCU to switch channel */
