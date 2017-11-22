@@ -1074,16 +1074,16 @@ static VOID NICInitRT5592RFRegisters(IN PRTMP_ADAPTER pAd)
 	pAd->Mlme.CaliBW20RfR24 = 0x1F;/* RF for A/G band */
 	for (i = 0; i < NUM_RF5592REG_2G_5G; i++)
 		RT30xxWriteRFRegister(pAd, RF5592Reg_2G_5G[i].Register, RF5592Reg_2G_5G[i].Value);
-    
+
 	/* Driver should toggle RF R02 bit7 */
 	RfReg = 0x80; /* rescal_en (initiate calbration) */
 	RT30xxWriteRFRegister(pAd, RF_R02, (UCHAR)RfReg);
 	RTMPusecDelay(1000);
-	
+
 	//RT5592FilterCalibration(pAd);
 
 	/* Init RF frequency offset */
-	RTMPAdjustFrequencyOffset(pAd, &pAd->RfFreqOffset);
+	RTMPAdjustFrequencyOffset(pAd, (PUCHAR)&pAd->RfFreqOffset);
 
 	/* Initialize RF R27 register, set RF R27 must be behind RTMPFilterCalibration() */
        if ((pAd->MACVersion & 0xffff) < 0x0211)
@@ -1107,7 +1107,7 @@ static VOID NICInitRT5592RFRegisters(IN PRTMP_ADAPTER pAd)
 	}
 
 #ifdef CONFIG_SWITCH_CHANNEL_OFFLOAD
-	/* Load channel RF register to shared memory */ 
+	/* Load channel RF register to shared memory */
 	/* RF for G band */
 	RTUSBMultiWrite_nBytes(pAd, 0x7100, (PUCHAR)RF5592Reg_2G, sizeof( RF5592Reg_2G), sizeof( RF5592Reg_2G));
 

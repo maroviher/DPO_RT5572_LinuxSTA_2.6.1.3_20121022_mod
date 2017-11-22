@@ -473,7 +473,7 @@ static VOID RT3593_PostBBPInitialization(
 		RTMP_BBP_IO_WRITE8_BY_REG_ID(pAd, BBP_R70, 0x00);
 	}
 	else
-	{ 	
+	{
 		RTMP_BBP_IO_WRITE8_BY_REG_ID(pAd, BBP_R70, 0x0A);
 	}
 
@@ -502,14 +502,14 @@ VOID NICInitRT3593RFRegisters(
 	RT30xxWriteRFRegister(pAd, RF_R02, RfReg);
 
 	/* Init RF frequency offset */
-	RTMPAdjustFrequencyOffset(pAd, &pAd->RfFreqOffset);
+	RTMPAdjustFrequencyOffset(pAd, (PUCHAR)&pAd->RfFreqOffset);
 
 	/* Driver should set RF R18 bit6 on before calibration */
 	RT30xxReadRFRegister(pAd, RF_R18, &RfReg);
 	RfReg |= ((RfReg & ~0x40) | 0x40); /* xo_tune_bypass (0: XO is auto-tuned and 1: XO tuning bypassed) */
 	RT30xxWriteRFRegister(pAd, RF_R18, RfReg);
 
-	/* Patch CCK ok, OFDM failed issue, just toggle and restore LDO_CFG0. */	
+	/* Patch CCK ok, OFDM failed issue, just toggle and restore LDO_CFG0. */
 	/* Patch SRAM for 3572, increase voltage to 1.35V on core voltage and down to 1.2V after 1 msec */
 	RTMP_IO_READ32(pAd, LDO_CFG0, &data);
 	data = ((data & 0xE0FFFFFF) | 0x0D000000);
