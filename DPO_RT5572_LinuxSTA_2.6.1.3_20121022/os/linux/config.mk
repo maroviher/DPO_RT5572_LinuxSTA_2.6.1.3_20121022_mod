@@ -23,7 +23,7 @@ HAS_APCLI=n
 
 # Support Wpa_Supplicant
 # i.e. wpa_supplicant -Dralink
-HAS_WPA_SUPPLICANT=n
+HAS_WPA_SUPPLICANT=y
 
 
 # Support Native WpaSupplicant for Network Maganger
@@ -32,7 +32,7 @@ HAS_WPA_SUPPLICANT=n
 # what if user want to use wpa_supplicant to serve P2P function/feature, 
 # in case, it must use Ralink Propriectary wpa_supplicant to do.
 # and this compile flag will report P2P Related Event to Ralink wpa_supplicant.
-HAS_NATIVE_WPA_SUPPLICANT_SUPPORT=n
+HAS_NATIVE_WPA_SUPPLICANT_SUPPORT=y
 
 #Support Net interface block while Tx-Sw queue full
 HAS_BLOCK_NET_IF=n
