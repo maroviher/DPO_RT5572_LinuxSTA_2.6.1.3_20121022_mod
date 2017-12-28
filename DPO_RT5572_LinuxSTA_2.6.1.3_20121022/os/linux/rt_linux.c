@@ -1125,6 +1125,8 @@ int RtmpOSFileRead(RTMP_OS_FD osfd,
 
 int RtmpOSFileWrite(RTMP_OS_FD osfd,
 		    char *pDataPtr, int writeLen) {
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0))
+	return = kernel_write(osfd, pDataPtr, writeLen, &osfd->f_pos);
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
 	return vfs_write(osfd, pDataPtr, writeLen, &osfd->f_pos);
 #else
