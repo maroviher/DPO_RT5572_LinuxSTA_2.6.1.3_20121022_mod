@@ -1110,6 +1110,8 @@ void RtmpOSFileSeek(RTMP_OS_FD osfd,
 
 int RtmpOSFileRead(RTMP_OS_FD osfd,
 		     char *pDataPtr, int readLen) {
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0))
+	return = kernel_read(osfd, pDataPtr, readLen, &osfd->f_pos);
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
 	return vfs_read(osfd, pDataPtr, readLen, &osfd->f_pos);
 #else
