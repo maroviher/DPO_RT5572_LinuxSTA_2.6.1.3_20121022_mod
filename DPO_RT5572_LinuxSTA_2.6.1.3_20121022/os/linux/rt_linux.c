@@ -1112,8 +1112,7 @@ int RtmpOSFileRead(RTMP_OS_FD osfd,
 		     char *pDataPtr, int readLen) {
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4,14,0)
 	return kernel_read(osfd, pDataPtr, readLen, &osfd->f_pos);
-#endif
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
 	return vfs_read(osfd, pDataPtr, readLen, &osfd->f_pos);
 #else
 	/* The object must have a read method */
@@ -1130,8 +1129,7 @@ int RtmpOSFileWrite(RTMP_OS_FD osfd,
 		    char *pDataPtr, int writeLen) {
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4,14,0)
 	return kernel_write(osfd, pDataPtr, writeLen, &osfd->f_pos);
-#endif
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
 	return vfs_write(osfd, pDataPtr, writeLen, &osfd->f_pos);
 #else
 	return osfd->f_op->write(osfd,
