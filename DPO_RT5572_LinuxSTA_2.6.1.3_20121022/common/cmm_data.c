@@ -2560,6 +2560,9 @@ VOID Indicate_Legacy_Packet(
 	RT_80211_TO_8023_PACKET(pAd, VLAN_VID, VLAN_Priority,
 							pRxBlk, Header802_3, FromWhichBSSID, TPID);
 	
+	pAd->Counters8023.rx_packets_cnt++;
+	pAd->Counters8023.ReceivedByteCount += pRxBlk->DataSize;
+
 	/* pass this 802.3 packet to upper layer or forward this packet to WM directly*/
 #ifdef RT_CFG80211_SUPPORT
         IF_DEV_CONFIG_OPMODE_ON_AP(pAd)
