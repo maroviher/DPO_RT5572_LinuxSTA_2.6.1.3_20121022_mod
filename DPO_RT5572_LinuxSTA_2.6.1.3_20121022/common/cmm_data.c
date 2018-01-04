@@ -3021,7 +3021,7 @@ VOID RtmpPrepareHwNullFrame(
 	UCHAR *ptr;
 	UINT i;
 	UINT32 longValue;
-	UCHAR MlmeRate;
+	/*UCHAR MlmeRate;*/
 
 	NState = MlmeAllocateMemory(pAd, (PUCHAR *)&pNullFrame);
 

@@ -709,7 +709,7 @@ INT Set_EncrypType_Proc(
     else
         return FALSE;
 
-	if (pAd->StaCfg.BssType == BSS_ADHOC)
+    if (pAd->StaCfg.BssType == BSS_ADHOC)
 	{
 		/* Build all corresponding channel information */
 		RTMPSetPhyMode(pAd, pAd->CommonCfg.DesiredPhyMode);
@@ -4036,7 +4036,7 @@ INT RTMPQueryInformation(
 		case OID_802_11_CURRENTCHANNEL:
 			DBGPRINT(RT_DEBUG_TRACE, ("Query::OID_802_11_CURRENTCHANNEL \n"));
 			wrq->u.data.length = sizeof(UCHAR);
-			DBGPRINT(RT_DEBUG_TRACE, ("sizeof UCHAR=%d, channel=%d \n", sizeof(UCHAR), pAd->CommonCfg.Channel));
+			DBGPRINT(RT_DEBUG_TRACE, ("sizeof UCHAR=%lu, channel=%d \n", sizeof(UCHAR), pAd->CommonCfg.Channel));
 			Status = copy_to_user(wrq->u.data.pointer, &pAd->CommonCfg.Channel, wrq->u.data.length);
 			DBGPRINT(RT_DEBUG_TRACE, ("Status=%d\n", Status));
 			break;
@@ -5211,16 +5211,16 @@ RtmpIoctl_rt_ioctl_siwfreq(
     if (ChannelSanity(pAd, chan) == TRUE)
     {
 	pAd->CommonCfg.Channel = chan;
-		/* Save the channel on MlmeAux for CntlOidRTBssidProc used. */
-		pAd->MlmeAux.Channel = pAd->CommonCfg.Channel;
-		/*save connect info*/
-		pAd->StaCfg.ConnectinfoChannel = pAd->CommonCfg.Channel;	
+	/* Save the channel on MlmeAux for CntlOidRTBssidProc used. */
+	pAd->MlmeAux.Channel = pAd->CommonCfg.Channel;
+	/*save connect info*/
+	pAd->StaCfg.ConnectinfoChannel = pAd->CommonCfg.Channel;	
 	DBGPRINT(RT_DEBUG_ERROR, ("==>rt_ioctl_siwfreq::SIOCSIWFREQ(Channel=%d)\n", pAd->CommonCfg.Channel));
     }
     else
         return NDIS_STATUS_FAILURE;
 
-	return NDIS_STATUS_SUCCESS;
+    return NDIS_STATUS_SUCCESS;
 }
 
 
@@ -5249,7 +5249,7 @@ RtmpIoctl_rt_ioctl_giwfreq(
 	UCHAR ch;
 	ULONG	m = 2412000;
 
-		ch = pAd->CommonCfg.Channel;
+	ch = pAd->CommonCfg.Channel;
 
 	DBGPRINT(RT_DEBUG_TRACE,("==>rt_ioctl_giwfreq  %d\n", ch));
 

@@ -1409,8 +1409,7 @@ int rtmp_ee_efuse_write16(
 	IN USHORT Offset, 
 	IN USHORT data)
 {
-    if (pAd->bFroceEEPROMBuffer
-		)
+    if (pAd->bFroceEEPROMBuffer)
     {
     	data = le2cpu16(data);
         DBGPRINT(RT_DEBUG_TRACE,  ("Write to EEPROM Buffer\n"));
@@ -1418,7 +1417,7 @@ int rtmp_ee_efuse_write16(
     }
     else
         eFuseWrite(pAd,Offset ,&data, 2);
-	return 0;
+    return 0;
 }
 
 

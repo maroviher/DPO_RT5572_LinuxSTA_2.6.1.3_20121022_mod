@@ -166,9 +166,9 @@ NDIS_STATUS RT30xxWriteRFRegister(
 			else
 				IdRf--;
 			
-				rfcsr.field.RF_CSR_DATA = IdRf;
-				RTMP_IO_WRITE32(pAd, RF_CSR_CFG, rfcsr.word);
-				RtmpOsMsDelay(1);
+			rfcsr.field.RF_CSR_DATA = IdRf;
+			RTMP_IO_WRITE32(pAd, RF_CSR_CFG, rfcsr.word);
+			RtmpOsMsDelay(1);
 		}
 	}
 

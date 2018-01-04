@@ -1823,7 +1823,7 @@ NDIS_STATUS	NICInitializeAsic(
 	UINT32			Counter = 0;
 #endif /* RTMP_MAC_USB */
 	USHORT			KeyIdx;
-	INT				i,apidx;
+	/*INT				i,apidx;*/
 	DBGPRINT(RT_DEBUG_TRACE, ("--> NICInitializeAsic\n"));
 
 

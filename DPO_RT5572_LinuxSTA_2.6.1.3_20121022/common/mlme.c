@@ -564,9 +564,9 @@ VOID MlmeResetRalinkCounters(
 	pAd->RalinkCounters.LastOneSecRxOkDataCnt = pAd->RalinkCounters.OneSecRxOkDataCnt;
 
 		/* for performace enchanement */
-		NdisZeroMemory(&pAd->RalinkCounters,
-						(UINT32)&pAd->RalinkCounters.OneSecEnd -
-						(UINT32)&pAd->RalinkCounters.OneSecStart);
+		NdisZeroMemory(&pAd->RalinkCounters, (size_t)(
+						(char*)&pAd->RalinkCounters.OneSecEnd -
+						(char*)&pAd->RalinkCounters.OneSecStart));
 
 	return;
 }
