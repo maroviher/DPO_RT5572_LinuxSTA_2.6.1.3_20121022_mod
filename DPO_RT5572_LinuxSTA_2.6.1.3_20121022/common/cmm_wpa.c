@@ -1156,12 +1156,12 @@ VOID PeerPairMsg4Action(
     IN PRTMP_ADAPTER    pAd, 
     IN MAC_TABLE_ENTRY  *pEntry,
     IN MLME_QUEUE_ELEM  *Elem) 
-{    
-	PEAPOL_PACKET   	pMsg4;    
+{   
+    PEAPOL_PACKET   	pMsg4;    
     PHEADER_802_11   pHeader;
     UINT            	MsgLen;
     BOOLEAN          Cancelled;
-	 UCHAR				group_cipher = Ndis802_11WEPDisabled;
+	 UCHAR				group_cipher __attribute__((unused))  = Ndis802_11WEPDisabled;
 
     DBGPRINT(RT_DEBUG_TRACE, ("===> PeerPairMsg4Action\n"));
 
@@ -1531,8 +1531,8 @@ VOID PeerGroupMsg2Action(
     UINT            	Len;
     PUCHAR          	pData;
     BOOLEAN         	Cancelled;
-	PEAPOL_PACKET       pMsg2;	
-	UCHAR				group_cipher = Ndis802_11WEPDisabled;	
+	 PEAPOL_PACKET    pMsg2;	
+	 UCHAR				group_cipher __attribute__((unused)) = Ndis802_11WEPDisabled;	
 
 	DBGPRINT(RT_DEBUG_TRACE, ("===> PeerGroupMsg2Action \n"));
 
@@ -1816,17 +1816,17 @@ int RtmpPasswordHash(PSTRING password, PUCHAR ssid, INT ssidlength, PUCHAR outpu
 	Return Value:
 
 	Note:
-		Output ¡ö KDF-Length (K, label, Context) where
+		Output ï¿½ï¿½ KDF-Length (K, label, Context) where
 		Input:    K, a 256-bit key derivation key
 				  label, a string identifying the purpose of the keys derived using this KDF
 				  Context, a bit string that provides context to identify the derived key
 				  Length, the length of the derived key in bits
 		Output: a Length-bit derived key
 
-		result ¡ö ""
-		iterations ¡ö (Length+255)/256 
+		result ï¿½ï¿½ ""
+		iterations ï¿½ï¿½ (Length+255)/256 
 		do i = 1 to iterations
-			result ¡ö result || HMAC-SHA256(K, i || label || Context || Length)
+			result ï¿½ï¿½ result || HMAC-SHA256(K, i || label || Context || Length)
 		od
 		return first Length bits of result, and securely delete all unused bits
 
