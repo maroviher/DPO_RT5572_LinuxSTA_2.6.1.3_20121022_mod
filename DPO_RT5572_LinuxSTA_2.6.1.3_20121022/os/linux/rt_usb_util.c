@@ -401,7 +401,7 @@ Note:
 */
 void dump_urb(VOID *purb_org)
 {
-	struct urb *purb = (struct urb *)purb_org;
+	struct urb *purb __attribute__((unused)) = (struct urb *)purb_org;
 
 	DBGPRINT(RT_DEBUG_TRACE,("urb                  :0x%08lx\n", (unsigned long)purb));
 	DBGPRINT(RT_DEBUG_TRACE,("\tdev                   :0x%08lx\n", (unsigned long)purb->dev));

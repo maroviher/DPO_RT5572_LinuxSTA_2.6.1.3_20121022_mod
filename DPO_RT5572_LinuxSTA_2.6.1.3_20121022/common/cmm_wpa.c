@@ -1816,17 +1816,17 @@ int RtmpPasswordHash(PSTRING password, PUCHAR ssid, INT ssidlength, PUCHAR outpu
 	Return Value:
 
 	Note:
-		Output ï¿½ï¿½ KDF-Length (K, label, Context) where
+		Output ¡ö KDF-Length (K, label, Context) where
 		Input:    K, a 256-bit key derivation key
 				  label, a string identifying the purpose of the keys derived using this KDF
 				  Context, a bit string that provides context to identify the derived key
 				  Length, the length of the derived key in bits
 		Output: a Length-bit derived key
 
-		result ï¿½ï¿½ ""
-		iterations ï¿½ï¿½ (Length+255)/256 
+		result ¡ö ""
+		iterations ¡ö (Length+255)/256 
 		do i = 1 to iterations
-			result ï¿½ï¿½ result || HMAC-SHA256(K, i || label || Context || Length)
+			result ¡ö result || HMAC-SHA256(K, i || label || Context || Length)
 		od
 		return first Length bits of result, and securely delete all unused bits
 

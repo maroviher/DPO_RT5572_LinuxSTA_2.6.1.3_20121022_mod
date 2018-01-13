@@ -1145,7 +1145,7 @@ VOID RT35xxLoadRFSleepModeSetup(
 	IN PRTMP_ADAPTER 	pAd)
 {
 	UCHAR RFValue;
-	UINT32 MACValue;
+	UINT32 MACValue __attribute__((unused));
 #ifdef RT35xx
 	if(IS_RT3572(pAd))
 		RT30xxWriteRFRegister(pAd, RF_R08, 0x00);
