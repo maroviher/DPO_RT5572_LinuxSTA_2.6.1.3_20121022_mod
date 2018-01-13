@@ -923,9 +923,9 @@ INT RTMP_COM_IoctlHandle(
 				pStats->pStats = pAd->stats;
 				if(pAd->OpMode == OPMODE_STA)
 				{
-					pStats->rx_packets = pAd->WlanCounters.ReceivedFragmentCount.QuadPart;
+					pStats->rx_packets = pAd->Counters8023.rx_packets_cnt;
 					pStats->tx_packets = pAd->WlanCounters.TransmittedFragmentCount.QuadPart;
-					pStats->rx_bytes = pAd->RalinkCounters.ReceivedByteCount;
+					pStats->rx_bytes = pAd->Counters8023.ReceivedByteCount;
 					pStats->tx_bytes = pAd->RalinkCounters.TransmittedByteCount;
 					pStats->rx_errors = pAd->Counters8023.RxErrors;
 					pStats->tx_errors = pAd->Counters8023.TxErrors;

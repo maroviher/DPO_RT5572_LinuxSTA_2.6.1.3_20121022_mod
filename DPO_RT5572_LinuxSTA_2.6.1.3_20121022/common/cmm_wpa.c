@@ -1028,7 +1028,7 @@ VOID PeerPairMsg3Action(
 	UINT            	MsgLen;				
 	PUINT8				pCurrentAddr = NULL;
 	UCHAR				group_cipher = Ndis802_11WEPDisabled;
-	BOOLEAN				Cancelled;
+	/*BOOLEAN				Cancelled;*/
 	   
 	DBGPRINT(RT_DEBUG_TRACE, ("===> PeerPairMsg3Action \n"));
 	
@@ -1256,17 +1256,17 @@ VOID WPAStart2WayGroupHS(
     
 	DBGPRINT(RT_DEBUG_TRACE, ("===> WPAStart2WayGroupHS\n"));
 
-    if ((!pEntry) || !IS_ENTRY_CLIENT(pEntry))
-        return;
+	if ((!pEntry) || !IS_ENTRY_CLIENT(pEntry))
+		return;
 
 
 	/* Allocate memory for output*/
 	os_alloc_mem(NULL, (PUCHAR *)&mpool, TX_EAPOL_BUFFER);
 	if (mpool == NULL)
-    {
-        DBGPRINT(RT_DEBUG_ERROR, ("!!!%s : no memory!!!\n", __FUNCTION__));
-        return;
-    }
+	{
+		DBGPRINT(RT_DEBUG_ERROR, ("!!!%s : no memory!!!\n", __FUNCTION__));
+		return;
+	}
 
 	pEapolFrame = (PEAPOL_PACKET)mpool;
 	NdisZeroMemory(pEapolFrame, TX_EAPOL_BUFFER);

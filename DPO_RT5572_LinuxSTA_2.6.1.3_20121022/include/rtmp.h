@@ -588,6 +588,7 @@ typedef struct _COUNTER_802_3 {
 	ULONG TxErrors;
 	ULONG RxErrors;
 	ULONG RxNoBuffer;
+	ULONG ReceivedByteCount, rx_packets_cnt;
 
 	/* Ethernet Stats */
 	ULONG RcvAlignmentErrors;
