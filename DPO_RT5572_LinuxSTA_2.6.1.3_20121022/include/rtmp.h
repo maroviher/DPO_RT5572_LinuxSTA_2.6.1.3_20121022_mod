@@ -1736,6 +1736,9 @@ typedef struct _STA_ADMIN_CONFIG {
 	RSSI_SAMPLE RssiSample;
 	ULONG NumOfAvgRssiSample;
 
+#ifdef DBG
+	BOOLEAN bDumpBeacons;
+#endif
 	ULONG LastBeaconRxTime;	/* OS's timestamp of the last BEACON RX time */
 	ULONG Last11bBeaconRxTime;	/* OS's timestamp of the last 11B BEACON RX time */
 	ULONG Last11gBeaconRxTime;	/* OS's timestamp of the last 11G BEACON RX time */

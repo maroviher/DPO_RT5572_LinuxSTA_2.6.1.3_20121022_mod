@@ -1402,6 +1402,20 @@ INT	Set_Debug_Proc(
 	IN	PRTMP_ADAPTER	pAd, 
 	IN	PSTRING			arg)
 {
+	switch(arg[0])
+	{
+		case 'b':
+			printk("Start beacon dump, to stop run "
+				"'iwpriv %s set Debug=a'\n",
+				RTMP_OS_NETDEV_GET_DEVNAME(pAd->net_dev));
+			pAd->StaCfg.bDumpBeacons = 1;
+			return TRUE;
+		case 'a':
+			printk("Stop beacon dump on %s\n",
+				RTMP_OS_NETDEV_GET_DEVNAME(pAd->net_dev));
+			pAd->StaCfg.bDumpBeacons = 0;
+			return TRUE;
+	}
 	DBGPRINT(RT_DEBUG_TRACE, ("==> Set_Debug_Proc *******************\n"));
 
     if(simple_strtol(arg, 0, 10) <= RT_DEBUG_LOUD)

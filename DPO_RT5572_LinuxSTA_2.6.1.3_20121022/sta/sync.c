@@ -1899,7 +1899,19 @@ VOID PeerBeacon(
 			}
 			
 			Update_Rssi_Sample(pAd, &pAd->StaCfg.RssiSample, &RxWI);
-
+#ifdef DBG
+			if(pAd->StaCfg.bDumpBeacons)
+			{
+				printk( "LastRssi0=%d, LastSnr0=%d, LastRssi1=%d, "
+					"LastSnr1=%d, LastRssi2=%d, LastSnr2=%d\n", 
+					(int)(CHAR)pAd->StaCfg.RssiSample.LastRssi0,
+					(int)(CHAR)pAd->StaCfg.RssiSample.LastSnr0,
+					(int)(CHAR)pAd->StaCfg.RssiSample.LastRssi1,
+					(int)(CHAR)pAd->StaCfg.RssiSample.LastSnr1,
+					(int)(CHAR)pAd->StaCfg.RssiSample.LastRssi2,
+					(int)(CHAR)pAd->StaCfg.RssiSample.LastSnr2);
+			}
+#endif
 			if ((pAd->CommonCfg.bIEEE80211H == 1) && (NewChannel != 0) && (Channel != NewChannel))
 			{
 				/* Switching to channel 1 can prevent from rescanning the current channel immediately (by auto reconnection). */
