@@ -365,7 +365,7 @@ int rt28xx_init(
 #endif /* CREDENTIAL_STORE */
 #endif /* CONFIG_STA_SUPPORT */
 
-	DBGPRINT(RT_DEBUG_OFF, ("1. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
+	DBGPRINT(RT_DEBUG_TRACE, ("1. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
 	if (Status != NDIS_STATUS_SUCCESS)
 	{
 		DBGPRINT_ERR(("RTMPReadParametersHook failed, Status[=0x%08x]\n",Status));
@@ -401,14 +401,14 @@ int rt28xx_init(
 	/* if (Status != NDIS_STATUS_SUCCESS)*/
 	/*    break;*/
 
-	DBGPRINT(RT_DEBUG_OFF, ("2. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
+	DBGPRINT(RT_DEBUG_TRACE, ("2. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
 
 	/* We should read EEPROM for all cases.  rt2860b*/
 	NICReadEEPROMParameters(pAd, (PSTRING)pDefaultMac);	
 #ifdef CONFIG_STA_SUPPORT
 #endif /* CONFIG_STA_SUPPORT */
 
-	DBGPRINT(RT_DEBUG_OFF, ("3. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
+	DBGPRINT(RT_DEBUG_TRACE, ("3. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
 
 #ifdef LED_CONTROL_SUPPORT
 	/* Send LED Setting to MCU */
@@ -438,7 +438,7 @@ int rt28xx_init(
 
 #ifdef RTMP_TEMPERATURE_COMPENSATION
 	/* Temperature compensation, initialize the lookup table */
-	DBGPRINT(RT_DEBUG_OFF, ("bAutoTxAgcG = %d\n", pAd->bAutoTxAgcG));
+	DBGPRINT(RT_DEBUG_TRACE, ("bAutoTxAgcG = %d\n", pAd->bAutoTxAgcG));
 
 	if (pAd->chipCap.bTempCompTxALC && pAd->bAutoTxAgcG)
 		InitLookupTable(pAd);

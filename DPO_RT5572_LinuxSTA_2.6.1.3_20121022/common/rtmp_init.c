@@ -314,15 +314,15 @@ NDIS_STATUS	RTMPAllocAdapterBlock(
 	/*
 		Init ProbeRespIE Table
 	*/
-	for (index = 0; index < MAX_LEN_OF_BSS_TABLE; index++) 
+	for (index = 0; index < MAX_LEN_OF_BSS_TABLE; index++)
 	{
 		if (os_alloc_mem(pAd,&pAd->ProbeRespIE[index].pIe, MAX_VIE_LEN) == NDIS_STATUS_SUCCESS)
 			RTMPZeroMemory(pAd->ProbeRespIE[index].pIe, MAX_VIE_LEN);
 		else
 			pAd->ProbeRespIE[index].pIe = NULL;
-	}	
+	}
 
-	DBGPRINT_S(Status, ("<-- RTMPAllocAdapterBlock, Status=%x\n", Status));
+	DBGPRINT(RT_DEBUG_TRACE, ("<-- RTMPAllocAdapterBlock, Status=%x\n", Status));
 	return Status;
 }
 
@@ -3999,7 +3999,7 @@ IN  PRTMP_ADAPTER   pAd)
 		}
 	}
 
-	DBGPRINT(RT_DEBUG_OFF, ("\x1b[m%s: primary/secondary ant %d/%d\n\x1b[m", 
+	DBGPRINT(RT_DEBUG_TRACE, ("\x1b[m%s: primary/secondary ant %d/%d\n\x1b[m",
 					__FUNCTION__,
 					pAd->RxAnt.Pair1PrimaryRxAnt,
 					pAd->RxAnt.Pair1SecondaryRxAnt));
