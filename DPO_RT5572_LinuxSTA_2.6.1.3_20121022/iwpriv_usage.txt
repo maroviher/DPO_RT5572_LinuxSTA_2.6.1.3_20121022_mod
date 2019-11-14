@@ -134,7 +134,7 @@ CountryRegionABand		{0~11}
 SSID                	{0~z, 1~32 ascii characters} 			
                     	::Set AP SSID
                     	
-WirelessMode        	{0~10}
+WirelessMode        	{0~11}
 						::Set Wireless Mode								 
                     	0: legacy 11b/g mixed 
 						1: legacy 11B only 
@@ -146,7 +146,8 @@ WirelessMode        	{0~10}
 						7: 11GN mixed
 						8: 11AN mixed
 						9: 11BGN mixed
-	   				   10: 11AGN mixed	
+						10: 11AGN mixed
+						11: 11n-only with 5G band
                     	
 Channel             	depends on CountryRegion or CountryRegionForABand
                         ::Set Channel
