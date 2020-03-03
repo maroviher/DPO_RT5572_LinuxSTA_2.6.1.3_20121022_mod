@@ -1156,12 +1156,12 @@ VOID PeerPairMsg4Action(
     IN PRTMP_ADAPTER    pAd, 
     IN MAC_TABLE_ENTRY  *pEntry,
     IN MLME_QUEUE_ELEM  *Elem) 
-{    
-	PEAPOL_PACKET   	pMsg4;    
-    PHEADER_802_11      pHeader;
+{   
+    PEAPOL_PACKET   	pMsg4;    
+    PHEADER_802_11   pHeader;
     UINT            	MsgLen;
-    BOOLEAN             Cancelled;
-	UCHAR				group_cipher = Ndis802_11WEPDisabled;
+    BOOLEAN          Cancelled;
+	 UCHAR				group_cipher __attribute__((unused))  = Ndis802_11WEPDisabled;
 
     DBGPRINT(RT_DEBUG_TRACE, ("===> PeerPairMsg4Action\n"));
 
@@ -1531,8 +1531,8 @@ VOID PeerGroupMsg2Action(
     UINT            	Len;
     PUCHAR          	pData;
     BOOLEAN         	Cancelled;
-	PEAPOL_PACKET       pMsg2;	
-	UCHAR				group_cipher = Ndis802_11WEPDisabled;	
+	 PEAPOL_PACKET    pMsg2;	
+	 UCHAR				group_cipher __attribute__((unused)) = Ndis802_11WEPDisabled;	
 
 	DBGPRINT(RT_DEBUG_TRACE, ("===> PeerGroupMsg2Action \n"));
 

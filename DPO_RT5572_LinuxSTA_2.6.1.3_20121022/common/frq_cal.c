@@ -122,7 +122,7 @@ VOID FrequencyCalibrationMode(
 	UINT8 Mode)
 {
 	UCHAR RFValue = 0;
-	UCHAR PreRFValue = 0; 
+	UCHAR PreRFValue __attribute__((unused)) = 0; 
 	
 	if (Mode == FREQ_CAL_MODE0)
 	{

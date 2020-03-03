@@ -510,9 +510,9 @@ PNDIS_PACKET duplicate_pkt(
 		MEM_DBG_PKT_ALLOC_INC(skb);
 
 		skb_reserve(skb, 2);
-		NdisMoveMemory(skb->tail, pHeader802_3, HdrLen);
+		NdisMoveMemory(skb_tail_pointer(skb), pHeader802_3, HdrLen);
 		skb_put(skb, HdrLen);
-		NdisMoveMemory(skb->tail, pData, DataSize);
+		NdisMoveMemory(skb_tail_pointer(skb), pData, DataSize);
 		skb_put(skb, DataSize);
 		skb->dev = pNetDev;	/*get_netdev_from_bssid(pAd, FromWhichBSSID); */
 		pPacket = OSPKT_TO_RTPKT(skb);
@@ -1110,7 +1110,9 @@ void RtmpOSFileSeek(RTMP_OS_FD osfd,
 
 int RtmpOSFileRead(RTMP_OS_FD osfd,
 		     char *pDataPtr, int readLen) {
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,14,0)
+	return kernel_read(osfd, pDataPtr, readLen, &osfd->f_pos);
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
 	return vfs_read(osfd, pDataPtr, readLen, &osfd->f_pos);
 #else
 	/* The object must have a read method */
@@ -1125,7 +1127,9 @@ int RtmpOSFileRead(RTMP_OS_FD osfd,
 
 int RtmpOSFileWrite(RTMP_OS_FD osfd,
 		    char *pDataPtr, int writeLen) {
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,14,0)
+	return kernel_write(osfd, pDataPtr, writeLen, &osfd->f_pos);
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,0)
 	return vfs_write(osfd, pDataPtr, writeLen, &osfd->f_pos);
 #else
 	return osfd->f_op->write(osfd,

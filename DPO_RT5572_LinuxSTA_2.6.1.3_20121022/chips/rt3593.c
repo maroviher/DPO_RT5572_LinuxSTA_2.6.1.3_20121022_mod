@@ -192,7 +192,7 @@ VOID RT3593ReverseRFSleepModeSetup(
 {
 
 	UCHAR	rfreg;
-	UINT32 MACValue;
+	UINT32 MACValue __attribute__((unused));
 
 	RT30xxReadRFRegister(pAd, RF_R01, &rfreg);
 	rfreg = ((rfreg & ~0x01) | 0x01); /* vco_en*/

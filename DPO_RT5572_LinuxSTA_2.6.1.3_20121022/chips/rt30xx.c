@@ -475,7 +475,7 @@ VOID RT30xxLoadRFSleepModeSetup(
 	IN PRTMP_ADAPTER 	pAd)
 {
 	UCHAR RFValue;
-	UINT32 MACValue;
+	UINT32 MACValue __attribute__((unused));
 
 	{
 			/* RF_BLOCK_en. RF R1 register Bit 0 to 0*/
@@ -513,7 +513,7 @@ VOID RT30xxReverseRFSleepModeSetup(
 	IN BOOLEAN			FlgIsInitState)
 {
 	UCHAR RFValue;
-	UINT32 MACValue;
+	UINT32 MACValue __attribute__((unused)) ;
 
 	if(!IS_RT3572(pAd))
 	{

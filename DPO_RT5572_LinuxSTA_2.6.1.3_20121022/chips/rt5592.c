@@ -792,7 +792,7 @@ VOID RT5592LoadRFNormalModeSetup(
 	RT30xxWriteRFRegister(pAd, RF_R30, RFValue);
 }
 
-static VOID RT5592FilterCalibration(IN PRTMP_ADAPTER pAd)
+static VOID RT5592FilterCalibration(IN PRTMP_ADAPTER pAd) 
 {
 
 	UCHAR FilterTarget = 0x13;
