@@ -127,9 +127,13 @@ static inline VOID __RTMP_OS_Init_Timer(
 	IN PVOID data)
 {
 	if (!timer_pending(pTimer)) {
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,15,0)
+		pTimer->function = function;
 		init_timer(pTimer);
 		pTimer->data = (unsigned long)data;
-		pTimer->function = function;
+#else   
+		timer_setup(pTimer, function, 0);
+#endif
 	}
 }
 
@@ -3784,8 +3788,7 @@ VOID RTMP_SetPeriodicTimer(IN NDIS_MINIPORT_TIMER *pTimerOrg,
 VOID RTMP_OS_Init_Timer(IN VOID *pReserved,
 			IN NDIS_MINIPORT_TIMER *pTimerOrg,
 			IN TIMER_FUNCTION function,
-			IN PVOID data,
-			IN LIST_HEADER *pTimerList) {
+			IN PVOID data) {
 	OS_NDIS_MINIPORT_TIMER *pTimer;
 
 	if (RTMP_OS_Alloc_RscOnly(pTimerOrg,
@@ -5418,8 +5421,7 @@ VOID RTMP_OS_Init_Timer(
 					  IN VOID *pReserved,
 					  IN NDIS_MINIPORT_TIMER *pTimerOrg,
 					  IN TIMER_FUNCTION function,
-					  IN PVOID data,
-					  IN LIST_HEADER *pTimerList) {
+					  IN PVOID data) {
 	__RTMP_OS_Init_Timer(pReserved, pTimerOrg, function, data);
 }
 

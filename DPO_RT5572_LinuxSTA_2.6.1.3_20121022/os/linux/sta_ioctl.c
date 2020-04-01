@@ -2600,7 +2600,11 @@ INT rt28xx_sta_ioctl(
 		case SIOCGIWPRIV:
 			if (wrqin->u.data.pointer) 
 			{
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5,0,0)
 				if ( access_ok(VERIFY_WRITE, wrqin->u.data.pointer, sizeof(privtab)) != TRUE)
+#else
+				if ( access_ok(wrqin->u.data.pointer, sizeof(privtab)) != TRUE)
+#endif
 					break;
 				if ((sizeof(privtab) / sizeof(privtab[0])) <= wrq->u.data.length)
 				{
@@ -2613,7 +2617,11 @@ INT rt28xx_sta_ioctl(
 			}
 			break;
 		case RTPRIV_IOCTL_SET:
-			if(access_ok(VERIFY_READ, wrqin->u.data.pointer, wrqin->u.data.length) != TRUE)   
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5,0,0)
+			if(access_ok(VERIFY_READ, wrqin->u.data.pointer, wrqin->u.data.length) != TRUE)
+#else
+			if(access_ok(wrqin->u.data.pointer, wrqin->u.data.length) != TRUE)
+#endif
 					break;
 			return rt_ioctl_setparam(net_dev, NULL, NULL, wrqin->u.data.pointer);
 			break;

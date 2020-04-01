@@ -30,8 +30,13 @@
 
 #include "rtmp_os.h"
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,15,0)
 #define DECLARE_TIMER_FUNCTION(_func)			\
 	void rtmp_timer_##_func(unsigned long data)
+#else
+#define DECLARE_TIMER_FUNCTION(_func)			\
+	void rtmp_timer_##_func(struct timer_list *)
+#endif
 
 #define GET_TIMER_FUNCTION(_func)				\
 	(PVOID)rtmp_timer_##_func
@@ -80,6 +85,7 @@ typedef struct _RTMP_TIMER_TASK_QUEUE_ {
 	RTMP_TIMER_TASK_ENTRY *pQTail;
 } RTMP_TIMER_TASK_QUEUE;
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,15,0)
 #define BUILD_TIMER_FUNCTION(_func)										\
 void rtmp_timer_##_func(unsigned long data)										\
 {																			\
@@ -93,6 +99,21 @@ void rtmp_timer_##_func(unsigned long data)										\
 	if ((_pQNode == NULL) && (_pAd->TimerQ.status & RTMP_TASK_CAN_DO_INSERT))	\
 		RTMP_OS_Add_Timer(&_pTimer->TimerObj, OS_HZ);               					\
 }
+#else /*LINUX_VERSION_CODE < KERNEL_VERSION(4,15,0)	*/
+#define BUILD_TIMER_FUNCTION(_func)										\
+void rtmp_timer_##_func(struct timer_list *t) \
+{																			\
+	RTMP_TIMER_TASK_ENTRY	*_pQNode;										\
+	RTMP_ADAPTER			*_pAd;											\
+	PRALINK_TIMER_STRUCT _pTimer = from_timer(_pTimer, t, TimerObj); \
+																			\
+	_pTimer->handle = _func;													\
+	_pAd = (RTMP_ADAPTER *)_pTimer->pAd;										\
+	_pQNode = RtmpTimerQInsert(_pAd, _pTimer); 								\
+	if ((_pQNode == NULL) && (_pAd->TimerQ.status & RTMP_TASK_CAN_DO_INSERT))	\
+		RTMP_OS_Add_Timer(&_pTimer->TimerObj, OS_HZ);               					\
+}
+#endif /*LINUX_VERSION_CODE < KERNEL_VERSION(4,15,0)	*/
 #else /* !RTMP_TIMER_TASK_SUPPORT */
 #define BUILD_TIMER_FUNCTION(_func)										\
 void rtmp_timer_##_func(unsigned long data)										\

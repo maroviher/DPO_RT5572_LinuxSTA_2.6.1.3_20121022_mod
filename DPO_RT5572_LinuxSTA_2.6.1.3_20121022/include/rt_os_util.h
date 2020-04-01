@@ -530,8 +530,7 @@ VOID RTMP_OS_Init_Timer(
 	IN	VOID 					*pReserved,
 	IN	NDIS_MINIPORT_TIMER		*pTimerOrg, 
 	IN	TIMER_FUNCTION			function,
-	IN	PVOID					data,
-	IN	LIST_HEADER				*pTimerList);
+	IN	PVOID					data);
 
 VOID RTMP_OS_Add_Timer(
 	IN	NDIS_MINIPORT_TIMER		*pTimerOrg,
