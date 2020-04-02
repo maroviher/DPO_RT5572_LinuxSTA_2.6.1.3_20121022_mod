@@ -315,7 +315,7 @@ export OSABL RT28xx_DIR RT28xx_MODE LINUX_SRC CROSS_COMPILE CROSS_COMPILE_INCLUD
 PHONY += all build_tools test UCOS THREADX LINUX release prerelease clean uninstall install libwapi osabl
 
 ifeq ($(TARGET),LINUX)
-all: build_tools $(TARGET)
+all: $(TARGET)
 else
 all: $(TARGET)
 endif 
