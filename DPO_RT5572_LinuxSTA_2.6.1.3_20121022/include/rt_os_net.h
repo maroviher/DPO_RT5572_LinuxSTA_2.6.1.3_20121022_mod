@@ -312,23 +312,8 @@ PNET_DEV RtmpPhyNetDevMainCreate(
 int rt28xx_close(VOID *dev);
 int rt28xx_open(VOID *dev);
 
-static INT VIRTUAL_IF_UP(VOID *pAd)
-{
-	RT_CMD_INF_UP_DOWN InfConf = { rt28xx_open, rt28xx_close };
-	if (RTMP_COM_IoctlHandle(pAd, NULL, CMD_RTPRIV_IOCTL_VIRTUAL_INF_UP,
-						0, &InfConf, 0) != NDIS_STATUS_SUCCESS)
-		return -1;
-	return 0;
-}
-
-static VOID VIRTUAL_IF_DOWN(VOID *pAd)
-{
-	RT_CMD_INF_UP_DOWN InfConf = { rt28xx_open, rt28xx_close };
-	RTMP_COM_IoctlHandle(pAd, NULL, CMD_RTPRIV_IOCTL_VIRTUAL_INF_DOWN,
-						0, &InfConf, 0);
-	return;
-}
-
+INT VIRTUAL_IF_UP(VOID *pAd);
+VOID VIRTUAL_IF_DOWN(VOID *pAd);
 #ifdef RTMP_MODULE_OS
 
 

@@ -519,7 +519,7 @@ static int rt2870_resume(
 /* Init driver module */
 INT __init rtusb_init(void)
 {
-	printk("rtusb init %s --->\n", RTMP_DRV_NAME);
+	DBGPRINT(RT_DEBUG_TRACE, ("rtusb init %s --->\n", RTMP_DRV_NAME));
 
 	sema_init(&rtusb_module_mutex, 1);
 	rtusb_disconnect_by_rmmod = 0;
@@ -544,14 +544,14 @@ VOID __exit rtusb_exit(void)
 {
 	int retval;
 
-	printk("rtusb exit --->\n");
+	DBGPRINT(RT_DEBUG_TRACE, ("rtusb exit --->\n"));
 
 	/*
 		No matter we get the semaphore or not, we still need to unregister it
 		from kernel, should be save enough
 	*/
 	retval = down_interruptible(&rtusb_module_mutex);
-	printk("%s():retval of get module mutex=%d!\n", __FUNCTION__, retval);
+	DBGPRINT(RT_DEBUG_TRACE, ("%s():retval of get module mutex=%d!\n", __FUNCTION__, retval));
 
 	rtusb_disconnect_by_rmmod = 1;
 

@@ -130,7 +130,7 @@ typedef struct usb_ctrlrequest devctrlrequest;
 #define STA_PROFILE_PATH			"/etc/Wireless/RT2870STA/RT2870STA.dat"
 #define STA_DRIVER_VERSION			"2.6.1.3"
 #ifdef MULTIPLE_CARD_SUPPORT
-#define CARD_INFO_PATH			"/etc/Wireless/RT2870STA/RT2870STACard.dat"
+#define CARD_INFO_PATH			"/etc/Wireless/RTSTA.dat"
 #endif /* MULTIPLE_CARD_SUPPORT */
 #endif /* RTMP_MAC_USB */
 

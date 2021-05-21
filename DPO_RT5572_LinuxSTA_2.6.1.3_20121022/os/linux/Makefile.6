@@ -16,6 +16,7 @@ obj-m := $(MOD_NAME).o
 #ifdef CONFIG_STA_SUPPORT
 ifeq ($(RT28xx_MODE), STA)
 $(MOD_NAME)-objs := \
+	../../common/rt_os_net.o\
 	../../common/crypt_md5.o\
 	../../common/crypt_sha2.o\
 	../../common/crypt_hmac.o\

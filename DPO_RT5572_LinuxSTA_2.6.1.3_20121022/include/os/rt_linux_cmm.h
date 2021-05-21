@@ -69,7 +69,7 @@ RTMP_DECLARE_DRV_OPS_FUNCTION(usb);
 #else
 
 #ifdef RTMP_MAC_USB
-#define RTMP_DRV_NAME	"rt2870"
+#define RTMP_DRV_NAME	"ra_st"
 #else
 #define RTMP_DRV_NAME	"rt2860"
 #endif /* RTMP_MAC_USB */
