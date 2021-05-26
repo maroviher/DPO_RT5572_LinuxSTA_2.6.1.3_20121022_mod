@@ -1685,7 +1685,7 @@ INT eFuse_init(
 	UINT	EfuseFreeBlock=0;
 	/*RT3572 means 3062/3562/3572*/
 	/*3593 means 3593*/
-	DBGPRINT(RT_DEBUG_ERROR, ("NVM is Efuse and its size =%x[%x-%x] \n",pAd->chipCap.EFUSE_USAGE_MAP_SIZE,pAd->chipCap.EFUSE_USAGE_MAP_START,pAd->chipCap.EFUSE_USAGE_MAP_END));
+	DBGPRINT(RT_DEBUG_TRACE, ("NVM is Efuse and its size =%x[%x-%x] \n",pAd->chipCap.EFUSE_USAGE_MAP_SIZE,pAd->chipCap.EFUSE_USAGE_MAP_START,pAd->chipCap.EFUSE_USAGE_MAP_END));
 	eFuseGetFreeBlockCount(pAd, &EfuseFreeBlock);
 	/*If the used block of efuse is less than 5. We assume the default value*/
 	/* of this efuse is empty and change to the buffer mode in odrder to */
