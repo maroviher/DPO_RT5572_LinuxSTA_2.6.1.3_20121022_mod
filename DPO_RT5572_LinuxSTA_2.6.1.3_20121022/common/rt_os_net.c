@@ -21,3 +21,19 @@ VOID VIRTUAL_IF_DOWN(VOID *pAd)
 						0, &InfConf, 0);
 	return;
 }
+
+#ifdef DBG
+void my_printk(const char *format, ...) {
+    char buf[200];
+    int l = snprintf(buf, sizeof(buf), "%s: %s", RTMP_DRV_NAME, format);
+    if(l < 0) {
+        printk(RTMP_DRV_NAME ": malformed debug message");
+        return;
+    }
+    if(l >= sizeof(buf)) {
+        printk(RTMP_DRV_NAME ": too long debug message");
+        return;
+    }
+    printk(buf, format);
+}
+#endif

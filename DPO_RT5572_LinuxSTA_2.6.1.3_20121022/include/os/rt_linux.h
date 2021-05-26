@@ -662,6 +662,7 @@ typedef struct os_cookie	* POS_COOKIE;
 #ifdef DBG
 extern ULONG		RTDebugLevel;
 extern ULONG		RTDebugFunc;
+void my_printk(const char *format, ...);
 
 #define DBGPRINT_RAW(Level, Fmt)    \
 do{                                   \
@@ -671,7 +672,7 @@ do{                                   \
     {                               \
     	if ((RTDebugFunc == 0) || \
 		((RTDebugFunc != 0) && (((__fLevel & RTDebugFunc)!= 0) || (__gLevel <= RT_DEBUG_ERROR))))\
-        printk Fmt;               \
+        my_printk Fmt;               \
     }                               \
 }while(0)
 
