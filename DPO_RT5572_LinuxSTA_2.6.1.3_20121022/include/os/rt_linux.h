@@ -681,7 +681,7 @@ do{                                   \
 
 #define DBGPRINT_ERR(Fmt)           \
 {                                   \
-    printk("ERROR!!! ");          \
+    printk("%s ERROR!", RTMP_DRV_NAME);          \
     printk Fmt;                  \
 }
 

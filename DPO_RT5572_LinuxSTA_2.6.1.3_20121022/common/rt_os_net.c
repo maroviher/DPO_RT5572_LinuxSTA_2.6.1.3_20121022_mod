@@ -24,6 +24,7 @@ VOID VIRTUAL_IF_DOWN(VOID *pAd)
 
 #ifdef DBG
 void my_printk(const char *format, ...) {
+    va_list args;
     char buf[200];
     int l = snprintf(buf, sizeof(buf), "%s: %s", RTMP_DRV_NAME, format);
     if(l < 0) {
@@ -34,6 +35,8 @@ void my_printk(const char *format, ...) {
         printk(RTMP_DRV_NAME ": too long debug message");
         return;
     }
-    printk(buf, format);
+    va_start(args, format);
+    vprintk(buf, args);
+    va_end(args);
 }
 #endif

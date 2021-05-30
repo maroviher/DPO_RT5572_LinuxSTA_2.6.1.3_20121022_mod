@@ -720,7 +720,7 @@ NDIS_STATUS	RTMPAllocTxRxRingMemory(
 		}
 	} while (FALSE);
 	
-	DBGPRINT_S(Status, ("<-- RTMPAllocTxRxRingMemory, Status=%x\n", Status));
+	DBGPRINT(RT_DEBUG_TRACE, ("<-- RTMPAllocTxRxRingMemory, Status=%x\n", Status));
 	return Status;
 
 err:
@@ -1214,8 +1214,9 @@ NDIS_STATUS	RTMPAllocTxRxRingMemory(
 			Status = NDIS_STATUS_RESOURCES;
 		}
 	} while (FALSE);
-	
-	DBGPRINT_S(Status, ("<-- RTMPAllocTxRxRingMemory, Status=%x\n", Status));
+
+	if (Status != NDIS_STATUS_SUCCESS)
+		DBGPRINT(RT_DEBUG_ERROR, ("<-- RTMPAllocTxRxRingMemory, Status=%x\n", Status));
 	return Status;
 }
 
